@@ -7,23 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BB49BA34CBD8A0D03BD8FF8 /* Pods_WhatsThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857837659E699267236DAA7C /* Pods_WhatsThere.framework */; };
 		D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */; };
-		D844DE6225F3BDC600CED3AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE6125F3BDC600CED3AF /* SceneDelegate.swift */; };
-		D844DE6425F3BDC600CED3AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE6325F3BDC600CED3AF /* ViewController.swift */; };
+		D844DE6425F3BDC600CED3AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE6325F3BDC600CED3AF /* MainViewController.swift */; };
 		D844DE6725F3BDC600CED3AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D844DE6525F3BDC600CED3AF /* Main.storyboard */; };
 		D844DE6925F3BDCA00CED3AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D844DE6825F3BDCA00CED3AF /* Assets.xcassets */; };
 		D844DE6C25F3BDCA00CED3AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D844DE6A25F3BDCA00CED3AF /* LaunchScreen.storyboard */; };
+		D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */; };
+		D844DE7F25F3DDF700CED3AF /* GeocoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE7E25F3DDF700CED3AF /* GeocoderService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2573CB09D635990AA42439D4 /* Pods-WhatsThere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThere.debug.xcconfig"; path = "Target Support Files/Pods-WhatsThere/Pods-WhatsThere.debug.xcconfig"; sourceTree = "<group>"; };
+		857837659E699267236DAA7C /* Pods_WhatsThere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsThere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8E46ACF0320A3C42CDC5927 /* Pods-WhatsThere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThere.release.xcconfig"; path = "Target Support Files/Pods-WhatsThere/Pods-WhatsThere.release.xcconfig"; sourceTree = "<group>"; };
 		D844DE5C25F3BDC600CED3AF /* WhatsThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D844DE6125F3BDC600CED3AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D844DE6325F3BDC600CED3AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D844DE6325F3BDC600CED3AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D844DE6625F3BDC600CED3AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D844DE6825F3BDCA00CED3AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D844DE6B25F3BDCA00CED3AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D844DE6D25F3BDCA00CED3AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCitiesController.swift; sourceTree = "<group>"; };
+		D844DE7E25F3DDF700CED3AF /* GeocoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB49BA34CBD8A0D03BD8FF8 /* Pods_WhatsThere.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41D58818FEEEAE73D120929E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2573CB09D635990AA42439D4 /* Pods-WhatsThere.debug.xcconfig */,
+				C8E46ACF0320A3C42CDC5927 /* Pods-WhatsThere.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B8FFF13D7023CB053680B205 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				857837659E699267236DAA7C /* Pods_WhatsThere.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D844DE5325F3BDC600CED3AF = {
 			isa = PBXGroup;
 			children = (
 				D844DE5E25F3BDC600CED3AF /* WhatsThere */,
 				D844DE5D25F3BDC600CED3AF /* Products */,
+				41D58818FEEEAE73D120929E /* Pods */,
+				B8FFF13D7023CB053680B205 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +83,32 @@
 		D844DE5E25F3BDC600CED3AF /* WhatsThere */ = {
 			isa = PBXGroup;
 			children = (
+				D844DE7D25F3DDD500CED3AF /* Networking */,
+				D844DE7925F3CCB200CED3AF /* Controllers */,
 				D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */,
-				D844DE6125F3BDC600CED3AF /* SceneDelegate.swift */,
-				D844DE6325F3BDC600CED3AF /* ViewController.swift */,
 				D844DE6525F3BDC600CED3AF /* Main.storyboard */,
 				D844DE6825F3BDCA00CED3AF /* Assets.xcassets */,
 				D844DE6A25F3BDCA00CED3AF /* LaunchScreen.storyboard */,
 				D844DE6D25F3BDCA00CED3AF /* Info.plist */,
 			);
 			path = WhatsThere;
+			sourceTree = "<group>";
+		};
+		D844DE7925F3CCB200CED3AF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D844DE6325F3BDC600CED3AF /* MainViewController.swift */,
+				D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D844DE7D25F3DDD500CED3AF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D844DE7E25F3DDF700CED3AF /* GeocoderService.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D844DE7025F3BDCA00CED3AF /* Build configuration list for PBXNativeTarget "WhatsThere" */;
 			buildPhases = (
+				462F4A17180A70471896C009 /* [CP] Check Pods Manifest.lock */,
 				D844DE5825F3BDC600CED3AF /* Sources */,
 				D844DE5925F3BDC600CED3AF /* Frameworks */,
 				D844DE5A25F3BDC600CED3AF /* Resources */,
+				A8CDC2ADD6790D756588F314 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,14 +178,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		462F4A17180A70471896C009 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WhatsThere-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8CDC2ADD6790D756588F314 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsThere/Pods-WhatsThere-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsThere/Pods-WhatsThere-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhatsThere/Pods-WhatsThere-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D844DE5825F3BDC600CED3AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D844DE6425F3BDC600CED3AF /* ViewController.swift in Sources */,
+				D844DE6425F3BDC600CED3AF /* MainViewController.swift in Sources */,
+				D844DE7F25F3DDF700CED3AF /* GeocoderService.swift in Sources */,
+				D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */,
 				D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */,
-				D844DE6225F3BDC600CED3AF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +372,7 @@
 		};
 		D844DE7125F3BDCA00CED3AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2573CB09D635990AA42439D4 /* Pods-WhatsThere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +392,7 @@
 		};
 		D844DE7225F3BDCA00CED3AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8E46ACF0320A3C42CDC5927 /* Pods-WhatsThere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
