@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,10 @@
 		D844DE6925F3BDCA00CED3AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D844DE6825F3BDCA00CED3AF /* Assets.xcassets */; };
 		D844DE6C25F3BDCA00CED3AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D844DE6A25F3BDCA00CED3AF /* LaunchScreen.storyboard */; };
 		D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */; };
-		D844DE7F25F3DDF700CED3AF /* GeocoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE7E25F3DDF700CED3AF /* GeocoderService.swift */; };
+		D844DE7F25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE7E25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift */; };
+		D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */; };
+		D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9925F45B5300CED3AF /* Forecast.swift */; };
+		D844DE9D25F4679200CED3AF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9C25F4679200CED3AF /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +32,10 @@
 		D844DE6B25F3BDCA00CED3AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D844DE6D25F3BDCA00CED3AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCitiesController.swift; sourceTree = "<group>"; };
-		D844DE7E25F3DDF700CED3AF /* GeocoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderService.swift; sourceTree = "<group>"; };
+		D844DE7E25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSimpleNetworkEngine.swift; sourceTree = "<group>"; };
+		D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIColorFromHexString.swift"; sourceTree = "<group>"; };
+		D844DE9925F45B5300CED3AF /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		D844DE9C25F4679200CED3AF /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +56,6 @@
 				2573CB09D635990AA42439D4 /* Pods-WhatsThere.debug.xcconfig */,
 				C8E46ACF0320A3C42CDC5927 /* Pods-WhatsThere.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -83,6 +88,8 @@
 		D844DE5E25F3BDC600CED3AF /* WhatsThere */ = {
 			isa = PBXGroup;
 			children = (
+				D844DE9825F45B3F00CED3AF /* Model */,
+				D844DE9225F42E4400CED3AF /* Helpers */,
 				D844DE7D25F3DDD500CED3AF /* Networking */,
 				D844DE7925F3CCB200CED3AF /* Controllers */,
 				D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */,
@@ -106,9 +113,26 @@
 		D844DE7D25F3DDD500CED3AF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D844DE7E25F3DDF700CED3AF /* GeocoderService.swift */,
+				D844DE7E25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		D844DE9225F42E4400CED3AF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D844DE9825F45B3F00CED3AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D844DE9925F45B5300CED3AF /* Forecast.swift */,
+				D844DE9C25F4679200CED3AF /* City.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,8 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D844DE6425F3BDC600CED3AF /* MainViewController.swift in Sources */,
-				D844DE7F25F3DDF700CED3AF /* GeocoderService.swift in Sources */,
+				D844DE9D25F4679200CED3AF /* City.swift in Sources */,
+				D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */,
+				D844DE7F25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift in Sources */,
 				D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */,
+				D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */,
 				D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

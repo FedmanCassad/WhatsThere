@@ -18,6 +18,7 @@ var window: UIWindow?
     GMSPlacesClient.provideAPIKey("AIzaSyDKubrAhenx__A0Uol4_22tvG6CKhLm55c")
     window = UIWindow(frame: UIScreen.main.bounds)
     let navigationController = UINavigationController(rootViewController: mainVC)
+   
     window?.rootViewController = navigationController
     window?.makeKeyAndVisible()
     return true
