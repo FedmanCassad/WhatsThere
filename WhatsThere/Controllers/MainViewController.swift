@@ -10,7 +10,7 @@ import GooglePlaces
 
 final class MainViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
   var tableView: UITableView!
-  
+  let service = SuperSimpleNetworkEngine()
   let defaultCities: [City] = [
    City(cityName: "Североморск", latitude: 69.06617190, longitude: 33.43116440),
     City(cityName: "Мурманск", latitude: 68.96519350, longitude: 33.07340370),
@@ -60,32 +60,24 @@ final class MainViewController: UIViewController, GMSAutocompleteViewControllerD
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    defaultLocations.forEach {
-      let network = NetworkgEngine()
-      network.getCoordinates(from: $0)  {
-        result in
-          switch result {
-            case .success(let placemark):
-            print(placemark)
-            case .failure(let error):
-              print(error)
+    tableView = UITableView()
+
+    service.getForecast(from: defaultCities[0]) {result in
+      switch result {
+        case .failure(let error):
+          assertionFailure(error.localizedDescription)
+        case .success(let forecast):
+          print(forecast)
       }
-    }
-//    let network = NetworkgEngine()
-//    network.getCoordinates(from: defaultLocations[0]) {result in
-//      switch result {
-//        case .success(let placemark):
-//        print(placemark)
-//        case .failure(let error):
-//          print(error)
-//      }
       
     }
-    setupTableView()
   }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(true)
+    setupTableView()
     setupUI()
+    
     
   }
 
@@ -106,14 +98,14 @@ final class MainViewController: UIViewController, GMSAutocompleteViewControllerD
   }
   
   private func setupTableView() {
-    tableView = UITableView()
+    
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "commonCell")
   }
-  
-
 }
+
+
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

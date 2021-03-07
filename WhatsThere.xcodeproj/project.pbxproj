@@ -18,6 +18,7 @@
 		D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */; };
 		D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9925F45B5300CED3AF /* Forecast.swift */; };
 		D844DE9D25F4679200CED3AF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9C25F4679200CED3AF /* City.swift */; };
+		D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DEA525F5084C00CED3AF /* ErrorHandling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIColorFromHexString.swift"; sourceTree = "<group>"; };
 		D844DE9925F45B5300CED3AF /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		D844DE9C25F4679200CED3AF /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		D844DEA525F5084C00CED3AF /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				D844DE9925F45B5300CED3AF /* Forecast.swift */,
 				D844DE9C25F4679200CED3AF /* City.swift */,
+				D844DEA525F5084C00CED3AF /* ErrorHandling.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */,
 				D844DE7F25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift in Sources */,
 				D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */,
+				D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */,
 				D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */,
 				D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */,
 			);
