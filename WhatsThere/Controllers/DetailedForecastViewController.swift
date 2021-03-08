@@ -9,18 +9,19 @@ import UIKit
 import SVGKit
 
 final class DetailedForecastViewController: UIViewController {
-  var forecast: YandexForecast
-  
-  lazy var tableView: UITableView = {
+  private var forecast: YandexForecast
+  var index: Int
+  private lazy var tableView: UITableView = {
     let tableView = UITableView()
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     tableView.translatesAutoresizingMaskIntoConstraints = false
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "commonCell")
+    tableView.register(DetailedViewControllerCell.self, forCellReuseIdentifier: "detailsCell")
     return tableView
   }()
   
-  lazy var detailCardView: DetailedCard = {
+  private lazy var detailCardView: DetailedCard = {
     let detailCard = DetailedCard()
     detailCard.configure(with: forecast)
     detailCard.clipsToBounds = true
@@ -29,7 +30,7 @@ final class DetailedForecastViewController: UIViewController {
     return detailCard
   }()
   
-  lazy var sputnikImageView: UIImageView = {
+  private lazy var sputnikImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.image = UIImage(named: "sputnik")
@@ -43,8 +44,10 @@ final class DetailedForecastViewController: UIViewController {
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .darkContent
   }
-  init(with forecast: YandexForecast) {
+  
+  init(with forecast: YandexForecast, and pageIndex: Int) {
     self.forecast = forecast
+    self.index = pageIndex
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -56,7 +59,6 @@ final class DetailedForecastViewController: UIViewController {
     setupUI()
     var date = forecast.nextDaysForecasts[2].date
     date.convertToLocalWeekday()
-    print(forecast.cityObject.locality.name)
   }
   
   private func setupUI() {
@@ -67,7 +69,7 @@ final class DetailedForecastViewController: UIViewController {
     NSLayoutConstraint.activate(commonConstraints)
   }
   
-  lazy var commonConstraints: [NSLayoutConstraint] = [
+  private lazy var commonConstraints: [NSLayoutConstraint] = [
     detailCardView.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.9),
     detailCardView.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.25),
     detailCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -80,7 +82,6 @@ final class DetailedForecastViewController: UIViewController {
     sputnikImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
     sputnikImageView.widthAnchor.constraint(equalTo: sputnikImageView.heightAnchor),
   ]
-
 }
 
 extension DetailedForecastViewController: UITableViewDelegate, UITableViewDataSource {
@@ -89,15 +90,15 @@ extension DetailedForecastViewController: UITableViewDelegate, UITableViewDataSo
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "commonCell") else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "detailsCell") as? DetailedViewControllerCell else {
       return UITableViewCell()
     }
-    cell.backgroundColor = .systemTeal
+    cell.configure(with: forecast.nextDaysForecasts[indexPath.row])
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    UITableView.automaticDimension
+    45
   }
   
   

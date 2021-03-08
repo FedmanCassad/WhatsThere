@@ -8,10 +8,10 @@
 import Foundation
 extension String {
   private func capitalizingFirstLetter() -> String {
-          return prefix(1).capitalized + dropFirst()
-      }
-
-      mutating func capitalizeFirstLetter() {
-          self = self.capitalizingFirstLetter()
-      }
+    return prefix(1).capitalized + dropFirst()
+  }
+  
+  mutating func capitalizeFirstLetter() {
+    self = self.capitalizingFirstLetter()
+  }
 }

@@ -60,10 +60,11 @@ struct YandexForecast: Codable {
       
       struct FullDayForecast: Codable {
         let minimumTemp, maximumTemp, humidity: Int
+        let icon: String
         enum CodingKeys: String, CodingKey {
           case minimumTemp = "temp_min"
           case maximumTemp = "temp_max"
-          case humidity
+          case humidity, icon
         }
       }
       struct DayShortForecast: Codable {

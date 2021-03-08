@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIColor {
-  
   static func UIColorFromHex (hex: String) -> UIColor? {
     var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
     if (cString.hasPrefix("#")) {

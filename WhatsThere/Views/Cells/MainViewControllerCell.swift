@@ -10,7 +10,7 @@ import SVGKit
 
 final class MainTableViewCell: UITableViewCell {
   
-  lazy var cityNameLabel: UILabel = {
+  private lazy var cityNameLabel: UILabel = {
     let label = UILabel()
     label.backgroundColor = UIColor.white.withAlphaComponent(0)
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +19,7 @@ final class MainTableViewCell: UITableViewCell {
     return label
   }()
   
-  lazy var regionNameLabel: UILabel = {
+  private lazy var regionNameLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.backgroundColor = .white
@@ -30,19 +30,21 @@ final class MainTableViewCell: UITableViewCell {
     return label
   }()
   
-  lazy var weatherIcon: UIImageView = {
+  private lazy var weatherIcon: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFit
     imageView.translatesAutoresizingMaskIntoConstraints = false
     return imageView
   }()
-  lazy var transperentView: UIView = {
+  
+  private lazy var transperentView: UIView = {
     let view = UIView()
     view.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
-  lazy var tempLabel: UILabel = {
+  
+  private lazy var tempLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .center
@@ -76,7 +78,7 @@ final class MainTableViewCell: UITableViewCell {
   ]
   
   //MARK: - When cell becomes visible we configurate content in a moment of updating forecast var
-  var forecast: YandexForecast? {
+  private var forecast: YandexForecast? {
     willSet {
       guard let newValue = newValue else {return}
       contentView.backgroundColor = TemperatureColor.colorDepending(onTemperatureValue: newValue.currentWeather.temp).color
@@ -85,7 +87,7 @@ final class MainTableViewCell: UITableViewCell {
       regionNameLabel.text = newValue.cityObject.province.name
       tempLabel.backgroundColor = contentView.backgroundColor
       if weatherIcon.image == nil {
-          self.weatherIcon.image = self.getIconImage(for: newValue.currentWeather.icon)
+        self.weatherIcon.image = self.getIconImage(for: newValue.currentWeather.icon)
       }
       tempLabel.text = String(newValue.currentWeather.temp)
     }
@@ -106,9 +108,9 @@ final class MainTableViewCell: UITableViewCell {
     NSLayoutConstraint.activate(commonConstraints)
     
   }
-
+  
 }
-
+//MARK: - Retrieving SVG image
 extension MainTableViewCell {
   private func getIconImage(for icon: String) -> UIImage {
     let url = URL(string: "https://yastatic.net/weather/i/icons/blueye/color/svg/\(icon).svg")

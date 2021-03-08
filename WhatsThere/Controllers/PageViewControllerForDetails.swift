@@ -8,8 +8,8 @@
 import UIKit
 
 final class PageViewController: UIViewController {
-  let dataSource: [YandexForecast]
-  var currentIndex: Int
+  var dataSource: [YandexForecast]
+  private var currentIndex: Int
   private var pageController: UIPageViewController!
   
   init(with forecasts: [YandexForecast], startIndex: Int) {
@@ -21,9 +21,11 @@ final class PageViewController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
   override func viewDidLoad() {
     setupPageController()
   }
+  
   private func setupPageController() {
     pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     pageController.dataSource = self
@@ -35,36 +37,39 @@ final class PageViewController: UIViewController {
                                        y: 0,
                                        width: view.frame.width,
                                        height: view.frame.height - view.safeAreaInsets.bottom)
-    pageController.setViewControllers([DetailedForecastViewController(with: dataSource[currentIndex])], direction: .forward, animated: true)
+    pageController.setViewControllers([DetailedForecastViewController(with: dataSource[currentIndex], and: currentIndex)], direction: .forward, animated: true)
     addChild(pageController)
     view.addSubview(pageController.view)
-    
     pageController.didMove(toParent: self)
   }
 }
 
+// Here is the magic exists. Long time spent fixing this. I have an idea how to fix lagging with paging but...
+//MARK: - PageViewController events handling
 extension PageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-    guard currentIndex != 0 else {
-      print("Для предыдущего вернули nil")
+    guard let currentVC = viewController as? DetailedForecastViewController else {
       return nil
     }
-    print("Текущий индекс \(currentIndex) расчитывая предыдущий")
-    currentIndex -= 1
-    print("Текущий индекс \(currentIndex) рассчитывая предыдущий")
+    currentIndex = currentVC.index
     
-   return DetailedForecastViewController(with: dataSource[currentIndex])
+    if currentIndex == 0 {
+      return nil
+    }
+    currentIndex -= 1
+    return DetailedForecastViewController(with: dataSource[currentIndex], and: currentIndex)
   }
   
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-    if currentIndex >= dataSource.count - 1 {
-      print("Для следующего вернули nil")
+    guard let currentVC = viewController as? DetailedForecastViewController else {
       return nil
     }
-    print("Текущий индекс \(currentIndex) расчитывая следующий")
-   currentIndex += 1
-    print("Текущий индекс \(currentIndex) рассчитывая следующий")
-   return DetailedForecastViewController(with: dataSource[currentIndex])
+    currentIndex = currentVC.index
+    if currentIndex >= dataSource.count - 1 {
+      return nil
+    }
+    currentIndex += 1
+    return DetailedForecastViewController(with: dataSource[currentIndex], and: currentIndex)
   }
   
   func presentationCount(for pageViewController: UIPageViewController) -> Int {

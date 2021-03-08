@@ -16,7 +16,7 @@
 		D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */; };
 		D844DE7F25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE7E25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift */; };
 		D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */; };
-		D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9925F45B5300CED3AF /* Forecast.swift */; };
+		D844DE9A25F45B5300CED3AF /* YandexForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9925F45B5300CED3AF /* YandexForecast.swift */; };
 		D844DE9D25F4679200CED3AF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9C25F4679200CED3AF /* City.swift */; };
 		D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DEA525F5084C00CED3AF /* ErrorHandling.swift */; };
 		D844DEAB25F537E200CED3AF /* MainViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DEAA25F537E200CED3AF /* MainViewControllerCell.swift */; };
@@ -44,7 +44,7 @@
 		D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCitiesController.swift; sourceTree = "<group>"; };
 		D844DE7E25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSimpleNetworkEngine.swift; sourceTree = "<group>"; };
 		D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIColorFromHexString.swift"; sourceTree = "<group>"; };
-		D844DE9925F45B5300CED3AF /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		D844DE9925F45B5300CED3AF /* YandexForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexForecast.swift; sourceTree = "<group>"; };
 		D844DE9C25F4679200CED3AF /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		D844DEA525F5084C00CED3AF /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		D844DEAA25F537E200CED3AF /* MainViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerCell.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		D844DE9825F45B3F00CED3AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D844DE9925F45B5300CED3AF /* Forecast.swift */,
+				D844DE9925F45B5300CED3AF /* YandexForecast.swift */,
 				D844DE9C25F4679200CED3AF /* City.swift */,
 				D844DEA525F5084C00CED3AF /* ErrorHandling.swift */,
 				D844DEB225F595FF00CED3AF /* TemperatureColor.swift */,
@@ -326,7 +326,7 @@
 				D844DED625F6552C00CED3AF /* DetailsCard.swift in Sources */,
 				D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */,
 				D844DED025F64ED800CED3AF /* DetailedForecastViewController.swift in Sources */,
-				D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */,
+				D844DE9A25F45B5300CED3AF /* YandexForecast.swift in Sources */,
 				D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */,
 				D86D949425F693AF00416A65 /* FirstCharacterCapitalizer.swift in Sources */,
 				D844DED325F6505900CED3AF /* DetailedViewControllerCell.swift in Sources */,
