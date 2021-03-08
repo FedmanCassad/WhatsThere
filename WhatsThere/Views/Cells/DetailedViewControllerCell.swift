@@ -68,7 +68,7 @@ final class DetailedViewControllerCell: UITableViewCell {
   
   func configure(with forecast: YandexForecast.Forecast) {
     self.forecast = forecast
-    contentView.backgroundColor = .clear
+    contentView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     layoutMySubviews()
   }
   

@@ -20,7 +20,7 @@ final class MainViewController: UIViewController {
   private var cities: [City] = ConstantsHelper.cities {
     didSet {
       isTableViewInitiallyUpdated = true
-      updateForecast(forlastElement: true)
+      updateForecast(forLastElement: true)
     }
   }
   
@@ -76,7 +76,7 @@ final class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     if !isForecastIsLoaded {
-      updateForecast(forlastElement: false)
+      updateForecast(forLastElement: false)
     }
     setupTableView()
   }
@@ -117,8 +117,8 @@ final class MainViewController: UIViewController {
 
 //MARK: - Updating tableView according recieved forecasts
 extension MainViewController {
-  private func updateForecast(forlastElement: Bool) {
-    if !forlastElement {
+  private func updateForecast(forLastElement: Bool) {
+    if !forLastElement {
       for city in cities {
         service.getForecast(from: city) {[weak self] result in
           guard let self = self else {return}

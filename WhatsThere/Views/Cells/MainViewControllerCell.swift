@@ -37,7 +37,7 @@ final class MainTableViewCell: UITableViewCell {
     return imageView
   }()
   
-  private lazy var transperentView: UIView = {
+  private lazy var transparentView: UIView = {
     let view = UIView()
     view.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -65,12 +65,12 @@ final class MainTableViewCell: UITableViewCell {
     tempLabel.heightAnchor.constraint(equalToConstant: 50),
     tempLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
     tempLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-    transperentView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-    transperentView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-    transperentView.topAnchor.constraint(equalTo: contentView.topAnchor),
-    transperentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-    transperentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-    transperentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+    transparentView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+    transparentView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+    transparentView.topAnchor.constraint(equalTo: contentView.topAnchor),
+    transparentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+    transparentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+    transparentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
     weatherIcon.widthAnchor.constraint(equalToConstant: 40),
     weatherIcon.heightAnchor.constraint(equalToConstant: 40),
     weatherIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -100,7 +100,7 @@ final class MainTableViewCell: UITableViewCell {
   }
   
   private func setupUI() {
-    contentView.addSubview(transperentView)
+    contentView.addSubview(transparentView)
     contentView.addSubview(cityNameLabel)
     contentView.addSubview(regionNameLabel)
     contentView.addSubview(tempLabel)
