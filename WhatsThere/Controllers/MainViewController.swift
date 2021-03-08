@@ -9,29 +9,29 @@ import UIKit
 import GooglePlaces
 
 final class MainViewController: UIViewController {
-  var tableViewInitiallyUpdated: Bool = false
-  let service = SuperSimpleNetworkEngine()
-  var tableView: UITableView!
-  var forecastIsLoaded: Bool  {
+  private var isTableViewInitiallyUpdated: Bool = false
+  private let service = SuperSimpleNetworkEngine()
+  private var tableView: UITableView!
+  private var isForecastIsLoaded: Bool  {
     cities.count == forecasts.count
   }
   
   //MARK: - Array of City objects for initial tableView fullfilling
-  var cities: [City] = ConstantsHelper.cities {
+  private var cities: [City] = ConstantsHelper.cities {
     didSet {
-      tableViewInitiallyUpdated = true
+      isTableViewInitiallyUpdated = true
       updateForecast(forlastElement: true)
     }
   }
+  
   //MARK: - Array of recieved and parsed YandexForecast objects with observer-like functionality
-  var forecasts: [YandexForecast] = [YandexForecast]()
+ private var forecasts: [YandexForecast] = [YandexForecast]()
   {
     willSet {
       // Замысел следующий: определяем по флагам: если первый запуск, заполняем полностью таблицу основываясь на да
-      if newValue.count == cities.count && !tableViewInitiallyUpdated {
+      if newValue.count == cities.count && !isTableViewInitiallyUpdated {
         DispatchQueue.main.async {[weak self] in
           self?.tableView.performBatchUpdates {
-            print("Я щас полностью обновляю таблицу")
             var indexPath = [IndexPath]()
             for i in 0..<newValue.count {
               indexPath.append(IndexPath(row: i, section: 0))
@@ -40,7 +40,7 @@ final class MainViewController: UIViewController {
           }
         }
       }
-      else if newValue.count == cities.count && tableViewInitiallyUpdated {
+      else if newValue.count == cities.count && isTableViewInitiallyUpdated {
         DispatchQueue.main.async {[weak self] in
           self?.tableView.beginUpdates()
           self?.tableView.insertRows(at: [IndexPath(row: newValue.count - 1, section: 0)], with: .fade)
@@ -50,7 +50,7 @@ final class MainViewController: UIViewController {
     }
   }
   
-  lazy var searchButton: UIButton = {
+  private lazy var searchButton: UIButton = {
     let button = UIButton()
     button.setTitle("Search", for: .normal)
     button.sizeToFit()
@@ -75,7 +75,7 @@ final class MainViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if !forecastIsLoaded {
+    if !isForecastIsLoaded {
       updateForecast(forlastElement: false)
     }
     setupTableView()
@@ -85,7 +85,7 @@ final class MainViewController: UIViewController {
     super.viewDidAppear(animated)
     setupUI()
   }
-
+  
   //MARK: - UI realated things
   private func setupUI() {
     view.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
@@ -104,6 +104,7 @@ final class MainViewController: UIViewController {
     searchVC.autocompleteFilter = filter
     return searchVC
   }
+  
   private func setupTableView() {
     tableView = UITableView(frame: view.safeAreaLayoutGuide.layoutFrame)
     tableView.separatorStyle = .singleLine
@@ -125,7 +126,6 @@ extension MainViewController {
             case .failure(let error):
               assertionFailure(error.localizedDescription)
             case .success(let forecast):
-              print(forecast)
               self.forecasts.append(forecast)
           }
         }
@@ -163,9 +163,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     cell.configureCell(with: forecasts[indexPath.row])
     return cell
   }
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let detailViewController = DetailedForecastViewController(with: forecasts[indexPath.row])
-    navigationController?.present(detailViewController, animated: true)
+    let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row)
+    navigationController?.present(pageVC, animated: true)
   }
 }
 

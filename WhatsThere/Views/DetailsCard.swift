@@ -10,17 +10,7 @@ import SVGKit
 
 final class DetailedCard: UIView {
   
-//  lazy var contentView: UIView = {
-//    let view = UIView(frame: CGRect(x: 8,
-//                                    y: 20,
-//                                    width: UIScreen.main.bounds.width,
-//                                    height: 200))
-//    view.translatesAutoresizingMaskIntoConstraints = false
-//    view.layer.cornerRadius = view.frame.height/2
-//    return view
-//  }()
-  
-  lazy var weatherIcon: UIImageView = {
+  private lazy var weatherIcon: UIImageView = {
     let imageView = UIImageView(frame: CGRect(x: 0,
                                               y: 0,
                                               width: 50,
@@ -30,7 +20,7 @@ final class DetailedCard: UIView {
     return imageView
   }()
   
-  lazy var cityNameLabel: UILabel = {
+  private lazy var cityNameLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
     label.textAlignment = .center
@@ -39,7 +29,7 @@ final class DetailedCard: UIView {
   }()
   
 
-  lazy var minimumTempTitleLabel: UILabel = {
+  private lazy var minimumTempTitleLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
     label.text = "Мин. \u{2103}"
@@ -47,14 +37,14 @@ final class DetailedCard: UIView {
     return label
   }()
   
-  lazy var minimumTempLabel: UILabel = {
+  private lazy var minimumTempLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
-  lazy var currentTempLabel: UILabel = {
+  private lazy var currentTempLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
     label.backgroundColor = UIColor.white.withAlphaComponent(0.4)
@@ -62,7 +52,7 @@ final class DetailedCard: UIView {
     return label
   }()
   
-  lazy var maximumTempTitleLabel: UILabel = {
+  private lazy var maximumTempTitleLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
     label.text = "Макс. \u{2103}"
@@ -70,14 +60,14 @@ final class DetailedCard: UIView {
     return label
   }()
   
-  lazy var maximumTempLabel: UILabel = {
+  private lazy var maximumTempLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
-  lazy var commonConstraints: [NSLayoutConstraint] = [
+  private lazy var commonConstraints: [NSLayoutConstraint] = [
     weatherIcon.widthAnchor.constraint(equalToConstant: 50),
     weatherIcon.heightAnchor.constraint(equalToConstant: 50),
     weatherIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -120,7 +110,7 @@ final class DetailedCard: UIView {
     setupUI()
   }
   
-  func setupUI() {
+  private func setupUI() {
     addSubview(weatherIcon)
     addSubview(cityNameLabel)
     addSubview(currentTempLabel)
@@ -129,6 +119,5 @@ final class DetailedCard: UIView {
     addSubview(minimumTempTitleLabel)
     addSubview(maximumTempTitleLabel)
     NSLayoutConstraint.activate(commonConstraints)
-  
   }
 }

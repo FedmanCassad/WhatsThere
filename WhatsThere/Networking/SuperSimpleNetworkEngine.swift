@@ -8,15 +8,13 @@
 import UIKit
 
 final class SuperSimpleNetworkEngine {
-  
-  let yandexApiKey = "3f04763a-5272-4f3d-926b-3b2b1fb38e5c"
-  
-  var session: URLSession {
+  private let yandexApiKey = "3f04763a-5272-4f3d-926b-3b2b1fb38e5c"
+  private var session: URLSession {
     URLSession.shared
   }
   
   //MARK: - Standart simplest network layer
-  func constructForecastRequest(for city: City) -> URLRequest? {
+  private func constructForecastRequest(for city: City) -> URLRequest? {
     let components: URLComponents = {
       var components = URLComponents()
       components.scheme = "https"
@@ -58,5 +56,4 @@ final class SuperSimpleNetworkEngine {
       }
     }.resume()
   }
-  
 }
