@@ -10,6 +10,7 @@ import Foundation
 public enum ForecastError: Error {
   case cantGenerateRequest
   case requestError(errorCode: HTTPURLResponse)
+  case parseError
   var description: (String, String) {
     switch self {
       case
@@ -30,6 +31,8 @@ public enum ForecastError: Error {
           default:
             return ("Unknown error", "Unknown error")
         }
+      case .parseError:
+        return("Parsing error", "Something wrong with recieved JSON object or developer too lazy to properly construct Decodobale structure")
     }
   }
 }

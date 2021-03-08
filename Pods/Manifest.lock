@@ -1,20 +1,39 @@
 PODS:
+  - CocoaLumberjack (3.7.0):
+    - CocoaLumberjack/Core (= 3.7.0)
+  - CocoaLumberjack/Core (3.7.0)
   - GoogleMaps/Base (4.1.0)
   - GooglePlaces (4.1.0):
     - GoogleMaps/Base (= 4.1.0)
+  - SVGKit (2.1.0):
+    - CocoaLumberjack (~> 3.0)
 
 DEPENDENCIES:
   - GooglePlaces
+  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
 
 SPEC REPOS:
   trunk:
+    - CocoaLumberjack
     - GoogleMaps
     - GooglePlaces
 
+EXTERNAL SOURCES:
+  SVGKit:
+    :branch: 3.x
+    :git: https://github.com/SVGKit/SVGKit.git
+
+CHECKOUT OPTIONS:
+  SVGKit:
+    :commit: 58152b9f7c85eab239160b36ffdfd364aa43d666
+    :git: https://github.com/SVGKit/SVGKit.git
+
 SPEC CHECKSUMS:
+  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
   GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
   GooglePlaces: a058b776259c13e1323c9ff135549cb1b13ad8e7
+  SVGKit: 132b010efbf57ec345309fe4a7f627c0a40c5d63
 
-PODFILE CHECKSUM: 1d7b4ed23f67ff1f3f6dd89c77952085ddaaf8ae
+PODFILE CHECKSUM: 4e29b72f9045620747c95acee91339b943131a0d
 
 COCOAPODS: 1.10.0

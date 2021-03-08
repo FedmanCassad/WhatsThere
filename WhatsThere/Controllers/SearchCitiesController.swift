@@ -8,10 +8,10 @@
 import UIKit
 import GooglePlaces
 
-class SearchCitiesController: GMSAutocompleteViewController {
+final class SearchCitiesController: GMSAutocompleteViewController {
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
   }
 }
   
