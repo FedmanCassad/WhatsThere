@@ -29,6 +29,14 @@ final class DetailedForecastViewController: UIViewController {
     return detailCard
   }()
   
+  lazy var sputnikImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.image = UIImage(named: "sputnik")
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
+  
   override var prefersStatusBarHidden: Bool {
     return false
   }
@@ -48,13 +56,14 @@ final class DetailedForecastViewController: UIViewController {
     setupUI()
     var date = forecast.nextDaysForecasts[2].date
     date.convertToLocalWeekday()
-    print(date)
+    print(forecast.cityObject.locality.name)
   }
   
   private func setupUI() {
     view.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     view.addSubview(detailCardView)
     view.addSubview(tableView)
+    view.addSubview(sputnikImageView)
     NSLayoutConstraint.activate(commonConstraints)
   }
   
@@ -65,26 +74,30 @@ final class DetailedForecastViewController: UIViewController {
     detailCardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
     tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
     tableView.topAnchor.constraint(equalTo: detailCardView.bottomAnchor),
-    tableView.heightAnchor.constraint(equalToConstant: 180)
+    tableView.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.35),
+    sputnikImageView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+    sputnikImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+    sputnikImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+    sputnikImageView.widthAnchor.constraint(equalTo: sputnikImageView.heightAnchor),
   ]
 
 }
 
 extension DetailedForecastViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    forecast.nextDaysForecasts.count - 1
+    forecast.nextDaysForecasts.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "commonCell") else {
       return UITableViewCell()
     }
-    cell.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
+    cell.backgroundColor = .systemTeal
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    30
+    UITableView.automaticDimension
   }
   
   

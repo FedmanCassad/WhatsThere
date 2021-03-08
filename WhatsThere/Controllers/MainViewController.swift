@@ -162,8 +162,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     return cell
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let detailViewController = DetailedForecastViewController(with: forecasts[indexPath.row])
-    navigationController?.present(detailViewController, animated: true)
+    let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row)
+    navigationController?.present(pageVC, animated: true)
+//    let detailViewController = DetailedForecastViewController(with: forecasts[indexPath.row])
+//    navigationController?.present(detailViewController, animated: true)
   }
 }
 
