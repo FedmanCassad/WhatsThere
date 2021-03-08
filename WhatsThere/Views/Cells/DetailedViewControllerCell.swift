@@ -29,7 +29,7 @@ final class DetailedViewControllerCell: UITableViewCell {
     label.backgroundColor = .clear
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textColor = .white
-    label.textAlignment = .center
+    label.textAlignment = .right
     return label
   }()
   
@@ -79,12 +79,12 @@ final class DetailedViewControllerCell: UITableViewCell {
     weekdayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
     weatherIcon.heightAnchor.constraint(equalTo: weekdayLabel.heightAnchor),
     weatherIcon.widthAnchor.constraint(equalTo: weatherIcon.heightAnchor),
-    weatherIcon.leadingAnchor.constraint(equalTo: weekdayLabel.trailingAnchor, constant: 5),
+    weatherIcon.leadingAnchor.constraint(equalTo: weekdayLabel.trailingAnchor, constant: 10),
     weatherIcon.centerYAnchor.constraint(equalTo: weekdayLabel.centerYAnchor),
     humidityLabel.heightAnchor.constraint(equalTo: weatherIcon.heightAnchor),
     humidityLabel.widthAnchor.constraint(equalTo: humidityLabel.heightAnchor),
     humidityLabel.centerYAnchor.constraint(equalTo: weatherIcon.centerYAnchor),
-    humidityLabel.leadingAnchor.constraint(equalTo: weatherIcon.trailingAnchor, constant: 5),
+    humidityLabel.leadingAnchor.constraint(equalTo: weatherIcon.trailingAnchor, constant: 10),
     minimumTempLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor),
     minimumTempLabel.widthAnchor.constraint(equalTo: minimumTempLabel.heightAnchor),
     minimumTempLabel.centerYAnchor.constraint(equalTo: humidityLabel.centerYAnchor),
@@ -92,7 +92,7 @@ final class DetailedViewControllerCell: UITableViewCell {
     maximumTempLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor),
     maximumTempLabel.widthAnchor.constraint(equalTo: maximumTempLabel.heightAnchor),
     maximumTempLabel.centerYAnchor.constraint(equalTo: minimumTempLabel.centerYAnchor),
-    maximumTempLabel.leadingAnchor.constraint(equalTo: minimumTempLabel.trailingAnchor, constant: 5),
+    maximumTempLabel.leadingAnchor.constraint(equalTo: minimumTempLabel.trailingAnchor, constant: 10),
   ]
   
   private func layoutMySubviews() {
