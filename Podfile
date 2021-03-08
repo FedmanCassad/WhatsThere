@@ -7,4 +7,5 @@ target 'WhatsThere' do
 
   # Pods for WhatsThere
 pod "GooglePlaces"
+pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
 end

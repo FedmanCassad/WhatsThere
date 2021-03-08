@@ -18,6 +18,13 @@
 		D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */; };
 		D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9925F45B5300CED3AF /* Forecast.swift */; };
 		D844DE9D25F4679200CED3AF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE9C25F4679200CED3AF /* City.swift */; };
+		D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DEA525F5084C00CED3AF /* ErrorHandling.swift */; };
+		D844DEAB25F537E200CED3AF /* MainViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DEAA25F537E200CED3AF /* MainViewControllerCell.swift */; };
+		D844DEB325F5960000CED3AF /* TemperatureColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DEB225F595FF00CED3AF /* TemperatureColor.swift */; };
+		D844DECB25F63B2300CED3AF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DECA25F63B2300CED3AF /* Constants.swift */; };
+		D844DED025F64ED800CED3AF /* DetailedForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DECF25F64ED800CED3AF /* DetailedForecastViewController.swift */; };
+		D844DED325F6505900CED3AF /* DetailedViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DED225F6505900CED3AF /* DetailedViewControllerCell.swift */; };
+		D844DED625F6552C00CED3AF /* DetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DED525F6552C00CED3AF /* DetailsCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +43,13 @@
 		D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+UIColorFromHexString.swift"; sourceTree = "<group>"; };
 		D844DE9925F45B5300CED3AF /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		D844DE9C25F4679200CED3AF /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		D844DEA525F5084C00CED3AF /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		D844DEAA25F537E200CED3AF /* MainViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerCell.swift; sourceTree = "<group>"; };
+		D844DEB225F595FF00CED3AF /* TemperatureColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureColor.swift; sourceTree = "<group>"; };
+		D844DECA25F63B2300CED3AF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D844DECF25F64ED800CED3AF /* DetailedForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastViewController.swift; sourceTree = "<group>"; };
+		D844DED225F6505900CED3AF /* DetailedViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewControllerCell.swift; sourceTree = "<group>"; };
+		D844DED525F6552C00CED3AF /* DetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +102,7 @@
 		D844DE5E25F3BDC600CED3AF /* WhatsThere */ = {
 			isa = PBXGroup;
 			children = (
+				D844DEA825F537B700CED3AF /* Views */,
 				D844DE9825F45B3F00CED3AF /* Model */,
 				D844DE9225F42E4400CED3AF /* Helpers */,
 				D844DE7D25F3DDD500CED3AF /* Networking */,
@@ -106,6 +121,7 @@
 			children = (
 				D844DE6325F3BDC600CED3AF /* MainViewController.swift */,
 				D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */,
+				D844DECF25F64ED800CED3AF /* DetailedForecastViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -122,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */,
+				D844DECA25F63B2300CED3AF /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -131,8 +148,28 @@
 			children = (
 				D844DE9925F45B5300CED3AF /* Forecast.swift */,
 				D844DE9C25F4679200CED3AF /* City.swift */,
+				D844DEA525F5084C00CED3AF /* ErrorHandling.swift */,
+				D844DEB225F595FF00CED3AF /* TemperatureColor.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D844DEA825F537B700CED3AF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D844DEA925F537BF00CED3AF /* Cells */,
+				D844DED525F6552C00CED3AF /* DetailsCard.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D844DEA925F537BF00CED3AF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D844DEAA25F537E200CED3AF /* MainViewControllerCell.swift */,
+				D844DED225F6505900CED3AF /* DetailedViewControllerCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +184,7 @@
 				D844DE5925F3BDC600CED3AF /* Frameworks */,
 				D844DE5A25F3BDC600CED3AF /* Resources */,
 				A8CDC2ADD6790D756588F314 /* [CP] Copy Pods Resources */,
+				E44F5EDE321C2F09B4284279 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -242,6 +280,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhatsThere/Pods-WhatsThere-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E44F5EDE321C2F09B4284279 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsThere/Pods-WhatsThere-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsThere/Pods-WhatsThere-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhatsThere/Pods-WhatsThere-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -249,13 +304,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D844DEB325F5960000CED3AF /* TemperatureColor.swift in Sources */,
+				D844DECB25F63B2300CED3AF /* Constants.swift in Sources */,
 				D844DE6425F3BDC600CED3AF /* MainViewController.swift in Sources */,
 				D844DE9D25F4679200CED3AF /* City.swift in Sources */,
 				D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */,
 				D844DE7F25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift in Sources */,
+				D844DEAB25F537E200CED3AF /* MainViewControllerCell.swift in Sources */,
 				D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */,
+				D844DED625F6552C00CED3AF /* DetailsCard.swift in Sources */,
+				D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */,
+				D844DED025F64ED800CED3AF /* DetailedForecastViewController.swift in Sources */,
 				D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */,
 				D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */,
+				D844DED325F6505900CED3AF /* DetailedViewControllerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
