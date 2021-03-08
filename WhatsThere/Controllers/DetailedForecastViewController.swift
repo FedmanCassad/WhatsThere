@@ -9,21 +9,25 @@ import UIKit
 import SVGKit
 
 final class DetailedForecastViewController: UIViewController {
-  var forecast: YandexForecast {
-    willSet {
-      detailCardView.configure(with: forecast)
-    }
-  }
+  var forecast: YandexForecast
   
   lazy var tableView: UITableView = {
     let tableView = UITableView()
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "commonCell")
     return tableView
   }()
   
-  let detailCardView = DetailedCard()
+  lazy var detailCardView: DetailedCard = {
+    let detailCard = DetailedCard()
+    detailCard.configure(with: forecast)
+    detailCard.clipsToBounds = true
+    detailCard.layer.cornerRadius = 15
+    detailCard.translatesAutoresizingMaskIntoConstraints = false
+    return detailCard
+  }()
   
   override var prefersStatusBarHidden: Bool {
     return false
@@ -41,13 +45,17 @@ final class DetailedForecastViewController: UIViewController {
   }
   
   override func viewDidLoad() {
-    detailCardView.translatesAutoresizingMaskIntoConstraints = false
-    detailCardView.clipsToBounds = true
-    detailCardView.layer.cornerRadius = 15
+    setupUI()
+    var date = forecast.nextDaysForecasts[2].date
+    date.convertToLocalWeekday()
+    print(date)
+  }
+  
+  private func setupUI() {
+    view.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     view.addSubview(detailCardView)
     view.addSubview(tableView)
     NSLayoutConstraint.activate(commonConstraints)
-    
   }
   
   lazy var commonConstraints: [NSLayoutConstraint] = [
@@ -57,7 +65,7 @@ final class DetailedForecastViewController: UIViewController {
     detailCardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
     tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
     tableView.topAnchor.constraint(equalTo: detailCardView.bottomAnchor),
-    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    tableView.heightAnchor.constraint(equalToConstant: 180)
   ]
 
 }
@@ -71,8 +79,12 @@ extension DetailedForecastViewController: UITableViewDelegate, UITableViewDataSo
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "commonCell") else {
       return UITableViewCell()
     }
-    cell.backgroundColor = .blue
+    cell.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    30
   }
   
   

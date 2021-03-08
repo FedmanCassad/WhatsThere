@@ -25,6 +25,9 @@
 		D844DED025F64ED800CED3AF /* DetailedForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DECF25F64ED800CED3AF /* DetailedForecastViewController.swift */; };
 		D844DED325F6505900CED3AF /* DetailedViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DED225F6505900CED3AF /* DetailedViewControllerCell.swift */; };
 		D844DED625F6552C00CED3AF /* DetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DED525F6552C00CED3AF /* DetailsCard.swift */; };
+		D86D948E25F67B9400416A65 /* PageViewControllerForDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D948D25F67B9400416A65 /* PageViewControllerForDetails.swift */; };
+		D86D949125F68E0A00416A65 /* WeekdayToStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D949025F68E0A00416A65 /* WeekdayToStringConverter.swift */; };
+		D86D949425F693AF00416A65 /* FirstCharacterCapitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D949325F693AF00416A65 /* FirstCharacterCapitalizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		D844DECF25F64ED800CED3AF /* DetailedForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastViewController.swift; sourceTree = "<group>"; };
 		D844DED225F6505900CED3AF /* DetailedViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewControllerCell.swift; sourceTree = "<group>"; };
 		D844DED525F6552C00CED3AF /* DetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCard.swift; sourceTree = "<group>"; };
+		D86D948D25F67B9400416A65 /* PageViewControllerForDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerForDetails.swift; sourceTree = "<group>"; };
+		D86D949025F68E0A00416A65 /* WeekdayToStringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayToStringConverter.swift; sourceTree = "<group>"; };
+		D86D949325F693AF00416A65 /* FirstCharacterCapitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCharacterCapitalizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 				D844DE6325F3BDC600CED3AF /* MainViewController.swift */,
 				D844DE7625F3CC2E00CED3AF /* SearchCitiesController.swift */,
 				D844DECF25F64ED800CED3AF /* DetailedForecastViewController.swift */,
+				D86D948D25F67B9400416A65 /* PageViewControllerForDetails.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -139,6 +146,8 @@
 			children = (
 				D844DE9325F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift */,
 				D844DECA25F63B2300CED3AF /* Constants.swift */,
+				D86D949025F68E0A00416A65 /* WeekdayToStringConverter.swift */,
+				D86D949325F693AF00416A65 /* FirstCharacterCapitalizer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -306,17 +315,20 @@
 			files = (
 				D844DEB325F5960000CED3AF /* TemperatureColor.swift in Sources */,
 				D844DECB25F63B2300CED3AF /* Constants.swift in Sources */,
+				D86D948E25F67B9400416A65 /* PageViewControllerForDetails.swift in Sources */,
 				D844DE6425F3BDC600CED3AF /* MainViewController.swift in Sources */,
 				D844DE9D25F4679200CED3AF /* City.swift in Sources */,
 				D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */,
 				D844DE7F25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift in Sources */,
 				D844DEAB25F537E200CED3AF /* MainViewControllerCell.swift in Sources */,
 				D844DE7725F3CC2E00CED3AF /* SearchCitiesController.swift in Sources */,
+				D86D949125F68E0A00416A65 /* WeekdayToStringConverter.swift in Sources */,
 				D844DED625F6552C00CED3AF /* DetailsCard.swift in Sources */,
 				D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */,
 				D844DED025F64ED800CED3AF /* DetailedForecastViewController.swift in Sources */,
 				D844DE9A25F45B5300CED3AF /* Forecast.swift in Sources */,
 				D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */,
+				D86D949425F693AF00416A65 /* FirstCharacterCapitalizer.swift in Sources */,
 				D844DED325F6505900CED3AF /* DetailedViewControllerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

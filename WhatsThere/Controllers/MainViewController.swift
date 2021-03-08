@@ -31,7 +31,6 @@ final class MainViewController: UIViewController {
       if newValue.count == cities.count && !tableViewInitiallyUpdated {
         DispatchQueue.main.async {[weak self] in
           self?.tableView.performBatchUpdates {
-            print("Я щас полностью обновляю таблицу")
             var indexPath = [IndexPath]()
             for i in 0..<newValue.count {
               indexPath.append(IndexPath(row: i, section: 0))
@@ -85,7 +84,7 @@ final class MainViewController: UIViewController {
     super.viewDidAppear(animated)
     setupUI()
   }
-
+  
   //MARK: - UI realated things
   private func setupUI() {
     view.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
@@ -125,7 +124,6 @@ extension MainViewController {
             case .failure(let error):
               assertionFailure(error.localizedDescription)
             case .success(let forecast):
-              print(forecast)
               self.forecasts.append(forecast)
           }
         }
