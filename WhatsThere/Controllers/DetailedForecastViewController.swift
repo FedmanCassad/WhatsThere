@@ -17,6 +17,7 @@ final class DetailedForecastViewController: UIViewController {
     tableView.delegate = self
     tableView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.allowsSelection = false
     tableView.register(DetailedViewControllerCell.self, forCellReuseIdentifier: "detailsCell")
     return tableView
   }()
@@ -45,7 +46,7 @@ final class DetailedForecastViewController: UIViewController {
     return .darkContent
   }
   
-  init(with forecast: YandexForecast, and pageIndex: Int) {
+  init(with forecast: YandexForecast, pageIndex: Int) {
     self.forecast = forecast
     self.index = pageIndex
     super.init(nibName: nil, bundle: nil)
@@ -57,8 +58,8 @@ final class DetailedForecastViewController: UIViewController {
   
   override func viewDidLoad() {
     setupUI()
-    var date = forecast.nextDaysForecasts[2].date
-    date.convertToLocalWeekday()
+//    var date = forecast.nextDaysForecasts[2].date
+//    date.convertToLocalWeekday()
   }
   
   private func setupUI() {

@@ -9,6 +9,7 @@ import UIKit
 import SVGKit
 
 final class DetailedViewControllerCell: UITableViewCell {
+  
   private var forecast: YandexForecast.Forecast? {
     willSet {
       guard let newValue = newValue else {return}
@@ -17,7 +18,12 @@ final class DetailedViewControllerCell: UITableViewCell {
       weekdayLabel.text = date
       humidityLabel.text = "\(newValue.partialForecast.day.humidity) %"
       if weatherIcon.image == nil {
-        weatherIcon.image = self.getIconImage(for: newValue.partialForecast.day.icon)
+        DispatchQueue.global(qos: .userInteractive).async {
+          guard let svgIcon = self.getIconImage(for: newValue.partialForecast.day.icon) else {return}
+          DispatchQueue.main.async {
+              self.weatherIcon.image = svgIcon.uiImage
+          }
+        }
       }
       minimumTempLabel.text = String(newValue.partialForecast.day.minimumTemp)
       maximumTempLabel.text = String(newValue.partialForecast.day.maximumTemp)
@@ -33,7 +39,7 @@ final class DetailedViewControllerCell: UITableViewCell {
     return label
   }()
   
- private lazy var weatherIcon: UIImageView = {
+  private lazy var weatherIcon: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFit
     imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +56,7 @@ final class DetailedViewControllerCell: UITableViewCell {
     return label
   }()
   
- private lazy var minimumTempLabel: UILabel = {
+  private lazy var minimumTempLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .center
@@ -70,6 +76,11 @@ final class DetailedViewControllerCell: UITableViewCell {
     self.forecast = forecast
     contentView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     layoutMySubviews()
+  }
+  
+  //TODO: вынести обновление UI
+  private func updateMyUIs(with: YandexForecast.Forecast) {
+    
   }
   
   private lazy var commonConstraints: [NSLayoutConstraint] = [
@@ -109,12 +120,8 @@ final class DetailedViewControllerCell: UITableViewCell {
 
 //MARK: - Retrieving SVG image
 extension DetailedViewControllerCell {
-  private func getIconImage(for icon: String) -> UIImage {
+  private func getIconImage(for icon: String) -> SVGKImage? {
     let url = URL(string: "https://yastatic.net/weather/i/icons/blueye/color/svg/\(icon).svg")
-    guard  let image = SVGKImage(contentsOf: url) else
-    {
-      return UIImage()
-    }
-    return image.uiImage
+    return SVGKImage(contentsOf: url)
   }
 }

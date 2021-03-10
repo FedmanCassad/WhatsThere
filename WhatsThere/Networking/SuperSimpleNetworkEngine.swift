@@ -7,13 +7,17 @@
 
 import UIKit
 
-final class SuperSimpleNetworkEngine {
+protocol WeatherFetcher {
+  func getForecast(from city: City, completion: @escaping  (Result<YandexForecast, ForecastError>) -> ())
+}
+
+final class SuperSimpleNetworkEngine: WeatherFetcher {
   private let yandexApiKey = "3f04763a-5272-4f3d-926b-3b2b1fb38e5c"
   private var session: URLSession {
     URLSession.shared
   }
   
-  //MARK: - Standart simplest network layer
+  //MARK: -  Simplest network layer
   private func constructForecastRequest(for city: City) -> URLRequest? {
     let components: URLComponents = {
       var components = URLComponents()
@@ -38,22 +42,30 @@ final class SuperSimpleNetworkEngine {
   }
   
   func getForecast(from city: City, completion: @escaping  (Result<YandexForecast, ForecastError>) -> ()) {
+    let dispatchGroup = DispatchGroup()
     guard let request = constructForecastRequest(for: city) else {
       completion(.failure(.cantGenerateRequest))
       return
     }
-    session.dataTask(with: request) {data, response, error in
+    dispatchGroup.enter()
+      session.dataTask(with: request) {data, response, error in
       if let error = error {
         assertionFailure(error.localizedDescription)
         completion(.failure(.requestError(errorCode: response as! HTTPURLResponse)))
       }
       if let data = data {
         if let forecast = try? JSONDecoder().decode(YandexForecast.self, from: data) {
+        
           completion(.success(forecast))
+          dispatchGroup.leave()
+          
         } else {
           completion(.failure(.parseError))
+          dispatchGroup.leave()
         }
       }
+    
     }.resume()
+    
   }
 }

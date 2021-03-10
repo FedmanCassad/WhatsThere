@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct City {
+protocol Locatable {
+  var latitude: Double { get }
+  var longitude: Double { get }
+}
+
+struct City: Locatable {
   var cityName: String
   var latitude: Double
   var longitude: Double

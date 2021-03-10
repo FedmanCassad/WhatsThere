@@ -87,7 +87,12 @@ final class MainTableViewCell: UITableViewCell {
       regionNameLabel.text = newValue.cityObject.province.name
       tempLabel.backgroundColor = contentView.backgroundColor
       if weatherIcon.image == nil {
-        self.weatherIcon.image = self.getIconImage(for: newValue.currentWeather.icon)
+        DispatchQueue.global(qos: .userInteractive).async {
+          guard let svgIcon = self.getIconImage(for: newValue.currentWeather.icon) else {return}
+          DispatchQueue.main.async {
+            self.weatherIcon.image = svgIcon.uiImage
+          }
+        }
       }
       tempLabel.text = String(newValue.currentWeather.temp)
     }
@@ -112,12 +117,8 @@ final class MainTableViewCell: UITableViewCell {
 }
 //MARK: - Retrieving SVG image
 extension MainTableViewCell {
-  private func getIconImage(for icon: String) -> UIImage {
+  private func getIconImage(for icon: String) -> SVGKImage? {
     let url = URL(string: "https://yastatic.net/weather/i/icons/blueye/color/svg/\(icon).svg")
-    guard  let image = SVGKImage(contentsOf: url) else
-    {
-      return UIImage()
-    }
-    return image.uiImage
+    return SVGKImage(contentsOf: url)
   }
 }

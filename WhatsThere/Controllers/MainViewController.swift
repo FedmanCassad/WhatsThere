@@ -8,48 +8,24 @@
 import UIKit
 import GooglePlaces
 
+enum UpdatingReason {
+  case initialUpdate, cityAdded, cityDeleted
+}
+
 final class MainViewController: UIViewController {
   private var isTableViewInitiallyUpdated: Bool = false
   private let service = SuperSimpleNetworkEngine()
-  private var tableView: UITableView!
-  private var isForecastIsLoaded: Bool  {
+  private var searchController: GMSAutocompleteViewController!
+  var isForecastsAreInitiallyLoaded:Bool {
     cities.count == forecasts.count
   }
-  
-  //MARK: - Array of City objects for initial tableView fullfilling
-  private var cities: [City] = ConstantsHelper.cities {
-    didSet {
-      isTableViewInitiallyUpdated = true
-      updateForecast(forLastElement: true)
-    }
-  }
+  //MARK: - Array of City objects for initial tableView full-filling
+  private var cities: [City] = ConstantsHelper.cities
   
   //MARK: - Array of recieved and parsed YandexForecast objects with observer-like functionality
- private var forecasts: [YandexForecast] = [YandexForecast]()
-  {
-    willSet {
-      // Замысел следующий: определяем по флагам: если первый запуск, заполняем полностью таблицу основываясь на да
-      if newValue.count == cities.count && !isTableViewInitiallyUpdated {
-        DispatchQueue.main.async {[weak self] in
-          self?.tableView.performBatchUpdates {
-            var indexPath = [IndexPath]()
-            for i in 0..<newValue.count {
-              indexPath.append(IndexPath(row: i, section: 0))
-            }
-            self?.tableView.insertRows(at: indexPath, with: .fade)
-          }
-        }
-      }
-      else if newValue.count == cities.count && isTableViewInitiallyUpdated {
-        DispatchQueue.main.async {[weak self] in
-          self?.tableView.beginUpdates()
-          self?.tableView.insertRows(at: [IndexPath(row: newValue.count - 1, section: 0)], with: .fade)
-          self?.tableView.endUpdates()
-        }
-      }
-    }
-  }
+  private var forecasts: [YandexForecast] = [YandexForecast]()
   
+  //MARK: - Lazy UIs
   private lazy var searchButton: UIButton = {
     let button = UIButton()
     button.setTitle("Search", for: .normal)
@@ -66,69 +42,108 @@ final class MainViewController: UIViewController {
     return button
   }()
   
-  override var prefersStatusBarHidden: Bool {
-    return false
-  }
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .darkContent
-  }
+  private lazy var tableView: UITableView = {
+    let tableView = UITableView(frame: view.safeAreaLayoutGuide.layoutFrame)
+    tableView.frame.size.height = view.frame.height - searchButton.frame.height - view.safeAreaInsets.bottom
+    tableView.separatorStyle = .singleLine
+    tableView.frame.origin.y -= view.safeAreaInsets.top
+    tableView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "mainCell")
+    return tableView
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if !isForecastIsLoaded {
+    searchController = getPreparedSearchViewControler()
+    if !isForecastsAreInitiallyLoaded {
       updateForecast(forLastElement: false)
     }
-    setupTableView()
   }
   
+  override func viewSafeAreaInsetsDidChange() {
+ setupUI()
+  }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    setupUI()
+//    setupUI()
+    
   }
   
-  //MARK: - UI realated things
+//  private func setupTableView() {
+//    tableView = UITableView(frame: view.safeAreaLayoutGuide.layoutFrame)
+//    tableView.frame.size.height = view.frame.height - searchButton.frame.height - view.safeAreaInsets.bottom
+//    tableView.separatorStyle = .singleLine
+//    tableView.frame.origin.y -= view.safeAreaInsets.top
+//    tableView.delegate = self
+//    tableView.dataSource = self
+//    tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "mainCell")
+//  }
+//
+  func updateTableView(for reason: UpdatingReason ) {
+    switch reason {
+      case .initialUpdate:
+        var indexPath = [IndexPath]()
+        print(forecasts.count)
+        for i in 0..<self.forecasts.count {
+          indexPath.append(IndexPath(row: i, section: 0))
+        }
+        tableView.performBatchUpdates {
+          tableView.insertRows(at: indexPath, with: .fade)
+        }
+      case .cityAdded:
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: forecasts.endIndex - 1, section: 0)], with: .fade)
+        tableView.endUpdates()
+        tableView.scrollToRow(at: IndexPath(row: forecasts.endIndex - 1, section: 0), at: .bottom, animated: true)
+      case .cityDeleted:
+        return
+    }
+  }
+  
+  //MARK: - UI related things
   private func setupUI() {
     view.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
-    navigationController?.setNavigationBarHidden(true, animated: true)
-    view.addSubview(searchButton)
-    tableView.frame.size.height = view.frame.height - searchButton.frame.height - view.safeAreaInsets.bottom
-    view.addSubview(tableView)
-    tableView.backgroundColor = UIColor.UIColorFromHex(hex: "315760ff")
+    [searchButton, tableView].forEach {
+      view.addSubview($0)
+    }
   }
   
-  private func getPreparedSearchViewControler() -> SearchCitiesController {
-    let searchVC = SearchCitiesController()
+  private func getPreparedSearchViewControler() -> GMSAutocompleteViewController {
+    let searchVC = GMSAutocompleteViewController()
     searchVC.delegate = self
     let filter = GMSAutocompleteFilter()
     filter.type = .city
     searchVC.autocompleteFilter = filter
     return searchVC
   }
-  
-  private func setupTableView() {
-    tableView = UITableView(frame: view.safeAreaLayoutGuide.layoutFrame)
-    tableView.separatorStyle = .singleLine
-    tableView.frame.origin.y -= view.safeAreaInsets.top
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "mainCell")
-  }
 }
 
 //MARK: - Updating tableView according recieved forecasts
 extension MainViewController {
+  
   private func updateForecast(forLastElement: Bool) {
+    let group = DispatchGroup()
     if !forLastElement {
       for city in cities {
-        service.getForecast(from: city) {[weak self] result in
-          guard let self = self else {return}
+        group.enter()
+        print("Вызываю сервис в - \(Thread.current)")
+        service.getForecast(from: city) {result in
           switch result {
             case .failure(let error):
               assertionFailure(error.localizedDescription)
             case .success(let forecast):
-              self.forecasts.append(forecast)
+              group.notify(queue: .main) {
+                self.forecasts.append(forecast)
+              }
           }
+          group.leave()
         }
+        group.wait()
+      }
+      group.notify(queue: .main) {
+        self.updateTableView(for: .initialUpdate)
       }
     } else {
       guard let city = cities.last else {return}
@@ -138,9 +153,9 @@ extension MainViewController {
           case .failure(let error):
             assertionFailure(error.localizedDescription)
           case .success(let forecast):
-            self.forecasts.append(forecast)
-            self.runInMainQueue {
-              self.tableView.scrollToRow(at: IndexPath(row: self.forecasts.endIndex - 1, section: 0), at: .bottom, animated: true)
+            group.notify(queue: .main) {
+              self.forecasts.append(forecast)
+              self.updateTableView(for: .cityAdded)
             }
         }
       }
@@ -166,7 +181,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row)
-    navigationController?.present(pageVC, animated: true)
+    present(pageVC, animated: true)
   }
 }
 
@@ -179,6 +194,7 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
                          longitude: place.coordinate.longitude)
     cities.append(cityToAdd)
     dismiss(animated: true)
+    updateForecast(forLastElement: true)
   }
   
   func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -194,7 +210,7 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
 //MARK:- Navigation
 extension MainViewController {
   @objc func goToSearchController() {
-    navigationController?.present(getPreparedSearchViewControler(), animated: true)
+    present(searchController, animated: true)
   }
 }
 

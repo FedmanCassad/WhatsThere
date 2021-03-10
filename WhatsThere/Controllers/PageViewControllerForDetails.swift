@@ -7,15 +7,17 @@
 
 import UIKit
 
-final class PageViewController: UIViewController {
-  var dataSource: [YandexForecast]
+final class PageViewController: UIPageViewController {
+  var pages: [DetailedForecastViewController]
   private var currentIndex: Int
-  private var pageController: UIPageViewController!
   
   init(with forecasts: [YandexForecast], startIndex: Int) {
-    dataSource = forecasts
+    pages = [DetailedForecastViewController]()
+    for (index, forecast) in forecasts.enumerated() {
+      pages.append(DetailedForecastViewController(with: forecast, pageIndex: index))
+    }
     currentIndex = startIndex
-    super.init(nibName: nil, bundle: nil)
+    super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
   }
   
   required init?(coder: NSCoder) {
@@ -23,24 +25,11 @@ final class PageViewController: UIViewController {
   }
   
   override func viewDidLoad() {
-    setupPageController()
-  }
-  
-  private func setupPageController() {
-    pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-    pageController.dataSource = self
-    pageController.delegate = self
-    pageController.view.backgroundColor = .clear
-    let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: nil)
-    navigationItem.rightBarButtonItem = rightBarButtonItem
-    pageController.view.frame = CGRect(x: 0,
-                                       y: 0,
-                                       width: view.frame.width,
-                                       height: view.frame.height - view.safeAreaInsets.bottom)
-    pageController.setViewControllers([DetailedForecastViewController(with: dataSource[currentIndex], and: currentIndex)], direction: .forward, animated: true)
-    addChild(pageController)
-    view.addSubview(pageController.view)
-    pageController.didMove(toParent: self)
+    super.viewDidLoad()
+    print(pages.count)
+    setViewControllers([pages[currentIndex]], direction: .forward, animated: true)
+    delegate = self
+    dataSource = self
   }
 }
 
@@ -57,7 +46,7 @@ extension PageViewController: UIPageViewControllerDelegate, UIPageViewController
       return nil
     }
     currentIndex -= 1
-    return DetailedForecastViewController(with: dataSource[currentIndex], and: currentIndex)
+    return pages[currentIndex]
   }
   
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -65,15 +54,15 @@ extension PageViewController: UIPageViewControllerDelegate, UIPageViewController
       return nil
     }
     currentIndex = currentVC.index
-    if currentIndex >= dataSource.count - 1 {
+    if currentIndex >= pages.count - 1 {
       return nil
     }
     currentIndex += 1
-    return DetailedForecastViewController(with: dataSource[currentIndex], and: currentIndex)
+    return pages[currentIndex]
   }
   
   func presentationCount(for pageViewController: UIPageViewController) -> Int {
-    dataSource.count
+    pages.count
   }
   
   func presentationIndex(for pageViewController: UIPageViewController) -> Int {

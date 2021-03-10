@@ -28,7 +28,7 @@ final class DetailedCard: UIView {
     return label
   }()
   
-
+  
   private lazy var minimumTempTitleLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
@@ -47,6 +47,8 @@ final class DetailedCard: UIView {
   private lazy var currentTempLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center
+    label.clipsToBounds = true
+    label.layer.cornerRadius = 15
     label.backgroundColor = UIColor.white.withAlphaComponent(0.4)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -111,13 +113,16 @@ final class DetailedCard: UIView {
   }
   
   private func setupUI() {
-    addSubview(weatherIcon)
-    addSubview(cityNameLabel)
-    addSubview(currentTempLabel)
-    addSubview(minimumTempLabel)
-    addSubview(maximumTempLabel)
-    addSubview(minimumTempTitleLabel)
-    addSubview(maximumTempTitleLabel)
+    [weatherIcon,
+     cityNameLabel,
+     currentTempLabel,
+     minimumTempLabel,
+     maximumTempLabel,
+     minimumTempTitleLabel,
+     maximumTempTitleLabel
+    ].forEach {
+      addSubview($0)
+     }
     NSLayoutConstraint.activate(commonConstraints)
   }
 }
