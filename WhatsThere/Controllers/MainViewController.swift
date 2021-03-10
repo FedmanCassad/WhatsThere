@@ -9,7 +9,7 @@ import UIKit
 import GooglePlaces
 
 enum UpdatingReason {
-  case initialUpdate, cityAdded, cityDeleted
+  case initialUpdate, cityAdded
 }
 
 final class MainViewController: UIViewController {
@@ -97,8 +97,6 @@ final class MainViewController: UIViewController {
         tableView.insertRows(at: [IndexPath(row: forecasts.endIndex - 1, section: 0)], with: .fade)
         tableView.endUpdates()
         tableView.scrollToRow(at: IndexPath(row: forecasts.endIndex - 1, section: 0), at: .bottom, animated: true)
-      case .cityDeleted:
-        return
     }
   }
   
@@ -183,7 +181,20 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row)
     present(pageVC, animated: true)
   }
+  
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let actions = UIContextualAction(style: .destructive, title: "Удалить") {_, _, isPerformed in
+      self.cities.remove(at: indexPath.row)
+      self.forecasts.remove(at: indexPath.row)
+      self.tableView.deleteRows(at: [indexPath], with: .middle)
+      isPerformed(true)
+    }
+    let swipeActionConfiguration = UISwipeActionsConfiguration(actions: [actions])
+    return swipeActionConfiguration
+  }
+  
 }
+
 
 //MARK:- Handling events from GMSAutocompleteViewController
 extension MainViewController: GMSAutocompleteViewControllerDelegate {
