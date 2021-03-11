@@ -26,14 +26,12 @@ final class PageViewController: UIPageViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(pages.count)
     setViewControllers([pages[currentIndex]], direction: .forward, animated: true)
     delegate = self
     dataSource = self
   }
 }
 
-// Here is the magic exists. Long time spent fixing this. I have an idea how to fix lagging with paging but...
 //MARK: - PageViewController events handling
 extension PageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

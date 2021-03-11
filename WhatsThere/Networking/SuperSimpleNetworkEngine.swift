@@ -12,6 +12,7 @@ protocol WeatherFetcher {
 }
 
 final class SuperSimpleNetworkEngine: WeatherFetcher {
+  
   private let yandexApiKey = "3f04763a-5272-4f3d-926b-3b2b1fb38e5c"
   private var session: URLSession {
     URLSession.shared
@@ -49,6 +50,7 @@ final class SuperSimpleNetworkEngine: WeatherFetcher {
     }
     dispatchGroup.enter()
       session.dataTask(with: request) {data, response, error in
+        print("Вызываю сервис в - \(Thread.current)")
       if let error = error {
         assertionFailure(error.localizedDescription)
         completion(.failure(.requestError(errorCode: response as! HTTPURLResponse)))

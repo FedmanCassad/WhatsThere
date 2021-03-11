@@ -8,7 +8,11 @@
 import UIKit
 import SVGKit
 
-final class DetailedForecastViewController: UIViewController {
+protocol Pageable {
+  var index: Int { get set }
+}
+
+final class DetailedForecastViewController: UIViewController, Pageable {
   private var forecast: YandexForecast
   var index: Int
   private lazy var tableView: UITableView = {
@@ -38,14 +42,7 @@ final class DetailedForecastViewController: UIViewController {
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
-  
-  override var prefersStatusBarHidden: Bool {
-    return false
-  }
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .darkContent
-  }
-  
+
   init(with forecast: YandexForecast, pageIndex: Int) {
     self.forecast = forecast
     self.index = pageIndex
@@ -58,8 +55,6 @@ final class DetailedForecastViewController: UIViewController {
   
   override func viewDidLoad() {
     setupUI()
-//    var date = forecast.nextDaysForecasts[2].date
-//    date.convertToLocalWeekday()
   }
   
   private func setupUI() {
@@ -85,6 +80,7 @@ final class DetailedForecastViewController: UIViewController {
   ]
 }
 
+//MARK:- UITableView events handling
 extension DetailedForecastViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     forecast.nextDaysForecasts.count
@@ -101,6 +97,4 @@ extension DetailedForecastViewController: UITableViewDelegate, UITableViewDataSo
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     45
   }
-  
-  
 }

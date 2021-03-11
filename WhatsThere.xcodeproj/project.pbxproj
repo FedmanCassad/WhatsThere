@@ -107,11 +107,11 @@
 		D844DE5E25F3BDC600CED3AF /* WhatsThere */ = {
 			isa = PBXGroup;
 			children = (
-				D844DEA825F537B700CED3AF /* Views */,
 				D844DE9825F45B3F00CED3AF /* Model */,
-				D844DE9225F42E4400CED3AF /* Helpers */,
-				D844DE7D25F3DDD500CED3AF /* Networking */,
+				D844DEA825F537B700CED3AF /* Views */,
 				D844DE7925F3CCB200CED3AF /* Controllers */,
+				D844DE7D25F3DDD500CED3AF /* Networking */,
+				D844DE9225F42E4400CED3AF /* Helpers */,
 				D844DE6525F3BDC600CED3AF /* Main.storyboard */,
 				D844DE6825F3BDCA00CED3AF /* Assets.xcassets */,
 				D844DE6A25F3BDCA00CED3AF /* LaunchScreen.storyboard */,
