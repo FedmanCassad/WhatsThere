@@ -9,24 +9,11 @@ import UIKit
 import SVGKit
 
 final class DetailedViewControllerCell: UITableViewCell {
-  
+  private weak var iconsCache: IconsStorage?
   private var forecast: YandexForecast.Forecast? {
     willSet {
       guard let newValue = newValue else {return}
-      var date = newValue.date
-      date.convertToLocalWeekday()
-      weekdayLabel.text = date
-      humidityLabel.text = "\(newValue.partialForecast.day.humidity) %"
-      if weatherIcon.image == nil {
-        DispatchQueue.global(qos: .userInteractive).async {
-          guard let svgIcon = self.getIconImage(for: newValue.partialForecast.day.icon) else {return}
-          DispatchQueue.main.async {
-              self.weatherIcon.image = svgIcon.uiImage
-          }
-        }
-      }
-      minimumTempLabel.text = String(newValue.partialForecast.day.minimumTemp)
-      maximumTempLabel.text = String(newValue.partialForecast.day.maximumTemp)
+      updateMyUIs(with: newValue)
     }
   }
   
@@ -72,15 +59,41 @@ final class DetailedViewControllerCell: UITableViewCell {
     return label
   }()
   
-  func configure(with forecast: YandexForecast.Forecast) {
+  func configure(with forecast: YandexForecast.Forecast, cache: IconsStorage) {
+    self.iconsCache = cache
     self.forecast = forecast
     contentView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     layoutMySubviews()
   }
   
   //TODO: вынести обновление UI
-  private func updateMyUIs(with: YandexForecast.Forecast) {
-    
+  private func updateMyUIs(with forecast: YandexForecast.Forecast) {
+    var date = forecast.date
+    date.convertToLocalWeekday()
+    weekdayLabel.text = date
+    humidityLabel.text = "\(forecast.partialForecast.day.humidity) %"
+    minimumTempLabel.text = String(forecast.partialForecast.day.minimumTemp)
+    maximumTempLabel.text = String(forecast.partialForecast.day.maximumTemp)
+    if weatherIcon.image == nil {
+      let iconString = forecast.partialForecast.day.icon
+      checkIconImageExisting(for: iconString)
+    }
+  }
+  
+  private func checkIconImageExisting(for iconString: String) {
+    if let image = iconsCache?.getTheIconFromStorage(iconString: iconString) {
+      weatherIcon.image = image
+    } else {
+     
+      DispatchQueue.global(qos: .userInteractive).async {[weak self] in
+        if let retrievedIcon = self?.getIconImage(for: iconString){
+          self?.iconsCache?.saveIconToStorage(iconString: iconString, image: retrievedIcon.uiImage)
+          DispatchQueue.main.sync {
+            self?.weatherIcon.image = retrievedIcon.uiImage
+          }
+        }
+      }
+    }
   }
   
   private lazy var commonConstraints: [NSLayoutConstraint] = [
@@ -115,8 +128,6 @@ final class DetailedViewControllerCell: UITableViewCell {
     NSLayoutConstraint.activate(commonConstraints)
   }
 }
-
-
 
 //MARK: - Retrieving SVG image
 extension DetailedViewControllerCell {

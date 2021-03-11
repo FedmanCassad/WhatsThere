@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4BB49BA34CBD8A0D03BD8FF8 /* Pods_WhatsThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857837659E699267236DAA7C /* Pods_WhatsThere.framework */; };
+		D806704325FAA04300470919 /* IconsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806704225FAA04300470919 /* IconsCache.swift */; };
 		D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */; };
 		D844DE6425F3BDC600CED3AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE6325F3BDC600CED3AF /* MainViewController.swift */; };
 		D844DE6725F3BDC600CED3AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D844DE6525F3BDC600CED3AF /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		2573CB09D635990AA42439D4 /* Pods-WhatsThere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThere.debug.xcconfig"; path = "Target Support Files/Pods-WhatsThere/Pods-WhatsThere.debug.xcconfig"; sourceTree = "<group>"; };
 		857837659E699267236DAA7C /* Pods_WhatsThere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsThere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E46ACF0320A3C42CDC5927 /* Pods-WhatsThere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThere.release.xcconfig"; path = "Target Support Files/Pods-WhatsThere/Pods-WhatsThere.release.xcconfig"; sourceTree = "<group>"; };
+		D806704225FAA04300470919 /* IconsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsCache.swift; sourceTree = "<group>"; };
 		D844DE5C25F3BDC600CED3AF /* WhatsThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D844DE6325F3BDC600CED3AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				D844DE9C25F4679200CED3AF /* City.swift */,
 				D844DEA525F5084C00CED3AF /* ErrorHandling.swift */,
 				D844DEB225F595FF00CED3AF /* TemperatureColor.swift */,
+				D806704225FAA04300470919 /* IconsCache.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				D86D949125F68E0A00416A65 /* WeekdayToStringConverter.swift in Sources */,
 				D844DED625F6552C00CED3AF /* DetailsCard.swift in Sources */,
 				D844DEA625F5084C00CED3AF /* ErrorHandling.swift in Sources */,
+				D806704325FAA04300470919 /* IconsCache.swift in Sources */,
 				D844DED025F64ED800CED3AF /* DetailedForecastViewController.swift in Sources */,
 				D844DE9A25F45B5300CED3AF /* YandexForecast.swift in Sources */,
 				D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */,

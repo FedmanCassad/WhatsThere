@@ -14,6 +14,7 @@ protocol Pageable {
 
 final class DetailedForecastViewController: UIViewController, Pageable {
   private var forecast: YandexForecast
+  private let iconsCache: IconsStorage
   var index: Int
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
@@ -43,9 +44,10 @@ final class DetailedForecastViewController: UIViewController, Pageable {
     return imageView
   }()
 
-  init(with forecast: YandexForecast, pageIndex: Int) {
+  init(with forecast: YandexForecast, pageIndex: Int, iconsCache: IconsStorage) {
     self.forecast = forecast
     self.index = pageIndex
+    self.iconsCache = iconsCache
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -90,7 +92,7 @@ extension DetailedForecastViewController: UITableViewDelegate, UITableViewDataSo
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "detailsCell") as? DetailedViewControllerCell else {
       return UITableViewCell()
     }
-    cell.configure(with: forecast.nextDaysForecasts[indexPath.row])
+    cell.configure(with: forecast.nextDaysForecasts[indexPath.row], cache: iconsCache)
     return cell
   }
   

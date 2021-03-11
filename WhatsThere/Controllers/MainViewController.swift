@@ -19,11 +19,14 @@ final class MainViewController: UIViewController {
   var isForecastsAreInitiallyLoaded:Bool {
     cities.count == forecasts.count
   }
+  
+  private var iconsLocalCache: IconsStorage?
+  
   //MARK: - Array of City objects for initial tableView full-filling
   private var cities: [City] = ConstantsHelper.cities
   
   //MARK: - Array of recieved and parsed YandexForecast objects
-  private var forecasts: [YandexForecast] = [YandexForecast]()
+  private var forecasts: [YandexForecast] = [YandexForecast]() 
   
   //MARK: - Lazy UIs
   private lazy var searchButton: UIButton = {
@@ -167,7 +170,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row)
+    let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row, iconsCache: iconsLocalCache)
     present(pageVC, animated: true)
   }
   

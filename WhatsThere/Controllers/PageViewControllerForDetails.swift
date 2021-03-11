@@ -11,10 +11,10 @@ final class PageViewController: UIPageViewController {
   var pages: [DetailedForecastViewController]
   private var currentIndex: Int
   
-  init(with forecasts: [YandexForecast], startIndex: Int) {
+  init(with forecasts: [YandexForecast], startIndex: Int, iconsCache: IconsStorage ) {
     pages = [DetailedForecastViewController]()
     for (index, forecast) in forecasts.enumerated() {
-      pages.append(DetailedForecastViewController(with: forecast, pageIndex: index))
+      pages.append(DetailedForecastViewController(with: forecast, pageIndex: index, iconsCache: iconsCache))
     }
     currentIndex = startIndex
     super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
