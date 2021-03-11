@@ -20,13 +20,13 @@ final class MainViewController: UIViewController {
     cities.count == forecasts.count
   }
   
-  private var iconsLocalCache: IconsStorage?
+  private weak var iconsLocalCache: IconsStorage?
   
   //MARK: - Array of City objects for initial tableView full-filling
   private var cities: [City] = ConstantsHelper.cities
   
   //MARK: - Array of recieved and parsed YandexForecast objects
-  private var forecasts: [YandexForecast] = [YandexForecast]() 
+  private var forecasts: [YandexForecast] = [YandexForecast]()
   
   //MARK: - Lazy UIs
   private lazy var searchButton: UIButton = {
@@ -59,14 +59,12 @@ final class MainViewController: UIViewController {
   
   //MARK: - Решил использовать контроллер от гугла, который дергает сервис Google Places, так как геокодер от Apple не умеет в предиктивный поиск, а гугл и красиво ищет и предоставляет нужные нам данные о координатах.
   private lazy var searchController: GMSAutocompleteViewController = {
-    print("Sear view initiated")
-      let searchVC = GMSAutocompleteViewController()
-      searchVC.delegate = self
-      let filter = GMSAutocompleteFilter()
-      filter.type = .city
-      searchVC.autocompleteFilter = filter
-      return searchVC
-    }()
+    let searchVC = GMSAutocompleteViewController()
+    let filter = GMSAutocompleteFilter()
+    filter.type = .city
+    searchVC.autocompleteFilter = filter
+    return searchVC
+  }()
   
   //MARK: - Lifecycle
   override func viewDidLoad() {
@@ -74,6 +72,7 @@ final class MainViewController: UIViewController {
     if !isForecastsAreInitiallyLoaded {
       updateForecast(forLastElement: false)
     }
+    searchController.delegate = self
   }
   
   override func viewSafeAreaInsetsDidChange() {
@@ -110,6 +109,7 @@ final class MainViewController: UIViewController {
       }
       group.notify(queue: .main) {
         self.updateTableView(for: .initialUpdate)
+        self.iconsLocalCache = IconsCache(fetchIconsFrom: self.forecasts)
       }
     } else {
       guard let city = cities.last else {return}
@@ -133,7 +133,6 @@ final class MainViewController: UIViewController {
     switch reason {
       case .initialUpdate:
         var indexPath = [IndexPath]()
-        print(forecasts.count)
         for i in 0..<self.forecasts.count {
           indexPath.append(IndexPath(row: i, section: 0))
         }
@@ -170,7 +169,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row, iconsCache: iconsLocalCache)
+    let pageVC = PageViewController(with: forecasts, startIndex: indexPath.row, iconsCache: iconsLocalCache!)
     present(pageVC, animated: true)
   }
   
@@ -207,11 +206,3 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
   }
 }
 
-//372
-extension UIViewController {
-  private func runInMainQueue(block: @escaping () -> ()) {
-    DispatchQueue.main.async {
-      block()
-    }
-  }
-}

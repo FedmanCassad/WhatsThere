@@ -14,7 +14,7 @@ protocol Pageable {
 
 final class DetailedForecastViewController: UIViewController, Pageable {
   private var forecast: YandexForecast
-  private let iconsCache: IconsStorage
+  private weak var iconsCache: IconsStorage
   var index: Int
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
@@ -23,6 +23,7 @@ final class DetailedForecastViewController: UIViewController, Pageable {
     tableView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
     tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.allowsSelection = false
+    tableView.clipsToBounds = true
     tableView.register(DetailedViewControllerCell.self, forCellReuseIdentifier: "detailsCell")
     return tableView
   }()
@@ -43,7 +44,7 @@ final class DetailedForecastViewController: UIViewController, Pageable {
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
-
+  
   init(with forecast: YandexForecast, pageIndex: Int, iconsCache: IconsStorage) {
     self.forecast = forecast
     self.index = pageIndex

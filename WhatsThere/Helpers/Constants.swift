@@ -8,6 +8,7 @@
 import Foundation
 
 class ConstantsHelper {
+  
   static let cities: [City] = [
     City(cityName: "Североморск", latitude: 69.06617190, longitude: 33.43116440),
     City(cityName: "Мурманск", latitude: 68.96519350, longitude: 33.07340370),
@@ -20,4 +21,6 @@ class ConstantsHelper {
     City(cityName: "Нью-Йорк", latitude: 40.71298220, longitude: -74.00720500),
     City(cityName: "Пермь", latitude: 58.01046, longitude: 56.25017)
   ]
+  
+  static let yandexKey = "3f04763a-5272-4f3d-926b-3b2b1fb38e5c"
 }

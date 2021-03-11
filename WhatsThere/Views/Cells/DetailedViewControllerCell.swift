@@ -84,7 +84,7 @@ final class DetailedViewControllerCell: UITableViewCell {
     if let image = iconsCache?.getTheIconFromStorage(iconString: iconString) {
       weatherIcon.image = image
     } else {
-     
+      
       DispatchQueue.global(qos: .userInteractive).async {[weak self] in
         if let retrievedIcon = self?.getIconImage(for: iconString){
           self?.iconsCache?.saveIconToStorage(iconString: iconString, image: retrievedIcon.uiImage)

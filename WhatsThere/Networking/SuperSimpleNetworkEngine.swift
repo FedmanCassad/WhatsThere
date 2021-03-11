@@ -13,7 +13,7 @@ protocol WeatherFetcher {
 
 final class SuperSimpleNetworkEngine: WeatherFetcher {
   
-  private let yandexApiKey = "3f04763a-5272-4f3d-926b-3b2b1fb38e5c"
+  private let yandexApiKey = ConstantsHelper.yandexKey
   private var session: URLSession {
     URLSession.shared
   }
@@ -49,25 +49,21 @@ final class SuperSimpleNetworkEngine: WeatherFetcher {
       return
     }
     dispatchGroup.enter()
-      session.dataTask(with: request) {data, response, error in
-        print("Вызываю сервис в - \(Thread.current)")
+    session.dataTask(with: request) {data, response, error in
       if let error = error {
         assertionFailure(error.localizedDescription)
         completion(.failure(.requestError(errorCode: response as! HTTPURLResponse)))
       }
       if let data = data {
         if let forecast = try? JSONDecoder().decode(YandexForecast.self, from: data) {
-        
           completion(.success(forecast))
           dispatchGroup.leave()
-          
         } else {
           completion(.failure(.parseError))
           dispatchGroup.leave()
         }
       }
-    
-    }.resume()
-    
+      
+    }.resume() 
   }
 }
