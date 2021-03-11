@@ -14,7 +14,7 @@ protocol Pageable {
 
 final class DetailedForecastViewController: UIViewController, Pageable {
   private var forecast: YandexForecast
-  private weak var iconsCache: IconsStorage
+  private weak var iconsCache: IconsStorage?
   var index: Int
   private lazy var tableView: UITableView = {
     let tableView = UITableView()

@@ -59,7 +59,7 @@ final class DetailedViewControllerCell: UITableViewCell {
     return label
   }()
   
-  func configure(with forecast: YandexForecast.Forecast, cache: IconsStorage) {
+  func configure(with forecast: YandexForecast.Forecast, cache: IconsStorage?) {
     self.iconsCache = cache
     self.forecast = forecast
     contentView.backgroundColor = UIColor.UIColorFromHex(hex: "#315760ff")
@@ -85,7 +85,7 @@ final class DetailedViewControllerCell: UITableViewCell {
       weatherIcon.image = image
     } else {
       
-      DispatchQueue.global(qos: .userInteractive).async {[weak self] in
+      DispatchQueue.global(qos: .utility).async {[weak self] in
         if let retrievedIcon = self?.getIconImage(for: iconString){
           self?.iconsCache?.saveIconToStorage(iconString: iconString, image: retrievedIcon.uiImage)
           DispatchQueue.main.sync {

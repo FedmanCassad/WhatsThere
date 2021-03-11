@@ -31,21 +31,24 @@ class IconsCache: IconsStorage {
   }
   
   private func fetchIcons(from forecasts: [YandexForecast]) {
+    let queue = DispatchQueue(label: "com.BroSquad.WhatsThere", qos: .utility, attributes: .concurrent)
+    queue.async { [weak self] in
     for commonForecast in forecasts {
       let iconString = commonForecast.currentWeather.icon
-      if localIconsProvider[iconString] == nil {
+      if self?.localIconsProvider[iconString] == nil {
         let url = URL(string: "https://yastatic.net/weather/i/icons/blueye/color/svg/\(iconString).svg")
         let image = SVGKImage(contentsOf: url)
-        localIconsProvider[iconString] = image?.uiImage
+        self?.localIconsProvider[iconString] = image?.uiImage
         for dayForecast in  commonForecast.nextDaysForecasts {
           let anotherIconSting = dayForecast.partialForecast.day.icon
-          if localIconsProvider[anotherIconSting] == nil {
+          if self?.localIconsProvider[anotherIconSting] == nil {
             let url = URL(string: "https://yastatic.net/weather/i/icons/blueye/color/svg/\(anotherIconSting).svg")
             let anotherImage = SVGKImage(contentsOf: url)
-            localIconsProvider[anotherIconSting] = anotherImage?.uiImage
+            self?.localIconsProvider[anotherIconSting] = anotherImage?.uiImage
           }
         }
       }
+    }
     }
   }
 }

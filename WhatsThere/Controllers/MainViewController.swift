@@ -20,7 +20,7 @@ final class MainViewController: UIViewController {
     cities.count == forecasts.count
   }
   
-  private weak var iconsLocalCache: IconsStorage?
+  private var iconsLocalCache: IconsStorage?
   
   //MARK: - Array of City objects for initial tableView full-filling
   private var cities: [City] = ConstantsHelper.cities
