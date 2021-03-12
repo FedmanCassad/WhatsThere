@@ -24,6 +24,7 @@ final class DetailedForecastViewController: UIViewController, Pageable {
     tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.allowsSelection = false
     tableView.clipsToBounds = true
+    tableView.isScrollEnabled = false
     tableView.register(DetailedViewControllerCell.self, forCellReuseIdentifier: "detailsCell")
     return tableView
   }()
