@@ -31,7 +31,7 @@ class IconsCache: IconsStorage {
   }
   
   private func fetchIcons(from forecasts: [YandexForecast]) {
-    let queue = DispatchQueue(label: "com.BroSquad.WhatsThere", qos: .utility, attributes: .concurrent)
+    let queue = DispatchQueue(label: "com.BroSquad.WhatsThere", qos: .userInteractive, attributes: .concurrent)
     queue.async { [weak self] in
     for commonForecast in forecasts {
       let iconString = commonForecast.currentWeather.icon
