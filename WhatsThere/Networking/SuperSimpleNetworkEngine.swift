@@ -14,6 +14,7 @@ protocol WeatherFetcher {
 final class SuperSimpleNetworkEngine: WeatherFetcher {
   
   private let yandexApiKey = ConstantsHelper.yandexKey
+  
   private var session: URLSession {
     URLSession.shared
   }

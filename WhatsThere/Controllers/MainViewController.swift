@@ -58,13 +58,7 @@ final class MainViewController: UIViewController {
   }()
   
   //MARK: - Решил использовать контроллер от гугла, который дергает сервис Google Places, так как геокодер от Apple не умеет в предиктивный поиск, а гугл и красиво ищет и предоставляет нужные нам данные о координатах.
-  private lazy var searchController: GMSAutocompleteViewController = {
-    let searchVC = GMSAutocompleteViewController()
-    let filter = GMSAutocompleteFilter()
-    filter.type = .city
-    searchVC.autocompleteFilter = filter
-    return searchVC
-  }()
+  private var searchController: GMSAutocompleteViewController?
   
   //MARK: - Lifecycle
   override func viewDidLoad() {
@@ -72,7 +66,7 @@ final class MainViewController: UIViewController {
     if !isForecastsAreInitiallyLoaded {
       updateForecast(forLastElement: false)
     }
-    searchController.delegate = self
+   searchController = getPreparedSearchController()
   }
   
   override func viewSafeAreaInsetsDidChange() {
@@ -84,6 +78,15 @@ final class MainViewController: UIViewController {
     [searchButton, tableView].forEach {
       view.addSubview($0)
     }
+  }
+  
+  private func getPreparedSearchController() -> GMSAutocompleteViewController {
+    let searchVC = GMSAutocompleteViewController()
+    let filter = GMSAutocompleteFilter()
+    filter.type = .city
+    searchVC.delegate = self
+    searchVC.autocompleteFilter = filter
+    return searchVC
   }
   
   //MARK:- Updating array of forecasts
@@ -148,7 +151,7 @@ final class MainViewController: UIViewController {
   }
   
   @objc private func showSearchControllerModally() {
-    present(searchController, animated: true)
+    present(searchController!, animated: true)
   }
 }
 
@@ -187,6 +190,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK:- Handling events from GMSAutocompleteViewController
 extension MainViewController: GMSAutocompleteViewControllerDelegate {
+  
+  
   func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
     let cityToAdd = City(cityName: place.name ?? "Error getting cityName",
                          latitude: place.coordinate.latitude,
@@ -194,6 +199,8 @@ extension MainViewController: GMSAutocompleteViewControllerDelegate {
     cities.append(cityToAdd)
     dismiss(animated: true)
     updateForecast(forLastElement: true)
+    searchController = getPreparedSearchController()
+    
   }
   
   func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
