@@ -5,6 +5,9 @@
 //  Created by Vladimir Banushkin on 14.03.2021.
 //
 
+/*
+ Эту анимацию в качестве помощи сделал мой брат. Спасибо ему!
+ */
 import UIKit
 
 final class LaunchScreenAnimation: UIViewController {
