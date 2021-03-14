@@ -11,7 +11,7 @@ final class LaunchScreenAnimation: UIViewController {
   
   let nextViewControllerToShow: UIViewController
   
-  //MARK:- Lazy initialising views
+  //MARK:- Lazy initializing views
   private lazy var viewLS: UIView = {
     let viewLS = UIView()
     viewLS.frame = view.bounds
