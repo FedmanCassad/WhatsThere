@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		001D57760D31F9BBE4D0D8C8 /* Pods_WhatsThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 343EBC084F57356432887B3C /* Pods_WhatsThere.framework */; };
 		D806704325FAA04300470919 /* IconsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806704225FAA04300470919 /* IconsCache.swift */; };
+		D806709625FD63B200470919 /* LaunchScreenAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806709525FD63B200470919 /* LaunchScreenAnimations.swift */; };
 		D844DE6025F3BDC600CED3AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */; };
 		D844DE6425F3BDC600CED3AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D844DE6325F3BDC600CED3AF /* MainViewController.swift */; };
 		D844DE6725F3BDC600CED3AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D844DE6525F3BDC600CED3AF /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		343EBC084F57356432887B3C /* Pods_WhatsThere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsThere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D46F25DD42BF3B9FC263D7C /* Pods-WhatsThere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThere.release.xcconfig"; path = "Target Support Files/Pods-WhatsThere/Pods-WhatsThere.release.xcconfig"; sourceTree = "<group>"; };
 		D806704225FAA04300470919 /* IconsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsCache.swift; sourceTree = "<group>"; };
+		D806709525FD63B200470919 /* LaunchScreenAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenAnimations.swift; sourceTree = "<group>"; };
 		D844DE5C25F3BDC600CED3AF /* WhatsThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D844DE5F25F3BDC600CED3AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D844DE6325F3BDC600CED3AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		D844DE5E25F3BDC600CED3AF /* WhatsThere */ = {
 			isa = PBXGroup;
 			children = (
+				D8FEE0522606B46600068FB2 /* Modules */,
 				D844DE9825F45B3F00CED3AF /* Model */,
 				D844DEA825F537B700CED3AF /* Views */,
 				D844DE7925F3CCB200CED3AF /* Controllers */,
@@ -128,6 +131,7 @@
 				D844DE6325F3BDC600CED3AF /* MainViewController.swift */,
 				D844DECF25F64ED800CED3AF /* DetailedForecastViewController.swift */,
 				D86D948D25F67B9400416A65 /* PageViewControllerForDetails.swift */,
+				D806709525FD63B200470919 /* LaunchScreenAnimations.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -179,6 +183,21 @@
 				D844DED225F6505900CED3AF /* DetailedViewControllerCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		D8FEE0522606B46600068FB2 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D8FEE0532606B47200068FB2 /* MainScreenModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D8FEE0532606B47200068FB2 /* MainScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainScreenModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +339,7 @@
 				D844DE9D25F4679200CED3AF /* City.swift in Sources */,
 				D844DE9425F42E5F00CED3AF /* UIColor+UIColorFromHexString.swift in Sources */,
 				D844DE7F25F3DDF700CED3AF /* SuperSimpleNetworkEngine.swift in Sources */,
+				D806709625FD63B200470919 /* LaunchScreenAnimations.swift in Sources */,
 				D844DEAB25F537E200CED3AF /* MainViewControllerCell.swift in Sources */,
 				D86D949125F68E0A00416A65 /* WeekdayToStringConverter.swift in Sources */,
 				D844DED625F6552C00CED3AF /* DetailsCard.swift in Sources */,

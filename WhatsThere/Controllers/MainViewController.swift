@@ -59,9 +59,10 @@ final class MainViewController: UIViewController {
   
   //MARK: - Решил использовать контроллер от гугла, который дергает сервис Google Places, так как геокодер от Apple не умеет в предиктивный поиск, а гугл и красиво ищет и предоставляет нужные нам данные о координатах.
   private var searchController: GMSAutocompleteViewController?
-  
+    
   //MARK: - Lifecycle
   override func viewDidLoad() {
+    navigationController?.navigationBar.isHidden = true
     super.viewDidLoad()
     if !isForecastsAreInitiallyLoaded {
       updateForecast(forLastElement: false)
