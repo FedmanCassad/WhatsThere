@@ -111,6 +111,7 @@
 		D844DE5E25F3BDC600CED3AF /* WhatsThere */ = {
 			isa = PBXGroup;
 			children = (
+				D8FEE0522606B46600068FB2 /* Modules */,
 				D844DE9825F45B3F00CED3AF /* Model */,
 				D844DEA825F537B700CED3AF /* Views */,
 				D844DE7925F3CCB200CED3AF /* Controllers */,
@@ -182,6 +183,21 @@
 				D844DED225F6505900CED3AF /* DetailedViewControllerCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		D8FEE0522606B46600068FB2 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D8FEE0532606B47200068FB2 /* MainScreenModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D8FEE0532606B47200068FB2 /* MainScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainScreenModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
